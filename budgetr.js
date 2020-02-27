@@ -78,9 +78,9 @@ function updateMoney() {
         ]).then(answer => {
             var id = parseInt(answer.cat_id)
             if (answer.add_or === "ADD") {
-                addMoney(id);
+                addMoney(cat_id);
             } else if (answer.add_or === "REMOVE") {
-                removeMoney(id)
+                removeMoney(cat_id)
             }
         })
 }
@@ -109,7 +109,7 @@ function modCat() {
 
 }
 
-function addMoney(id) {
+function addMoney(cat_id) {
     inquirer
         .prompt([
             {
@@ -118,7 +118,7 @@ function addMoney(id) {
                 name: "add_amount"
             }
         ]).then(answer => {
-            var query = "SELECT * FROM cats WHERE id=" + id
+            var query = "SELECT * FROM cats WHERE id=" + cat_id
             connection.query(query, function (err, res) {
                 if (err) throw err;
                 console.log("Updating...")
@@ -146,7 +146,7 @@ function addMoney(id) {
         })
 }
 
-function removeMoney(id){
+function removeMoney(cat_id){
     inquirer
         .prompt([
             {
@@ -155,7 +155,7 @@ function removeMoney(id){
                 name: "remove_amount"
             }
         ]).then(answer => {
-            var query = "SELECT * FROM cats WHERE id=" + id
+            var query = "SELECT * FROM cats WHERE id=" + cat_id
             connection.query(query, function (err, res) {
                 if (err) throw err;
                 console.log("Updating...")
